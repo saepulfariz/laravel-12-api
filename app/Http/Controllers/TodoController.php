@@ -8,6 +8,20 @@ use App\Http\Controllers\Controller;
 
 class TodoController extends Controller
 {
+    public function index()
+    {
+        $todos = Todo::all();
+
+        return response()->json(['data' => $todos]);
+    }
+
+    public function show($id)
+    {
+        $todos = Todo::findOrFail($id);
+
+        return response()->json(['data' => $todos]);
+    }
+
     public function store(Request $request)
     {
         $request->validate([

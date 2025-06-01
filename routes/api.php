@@ -13,3 +13,5 @@ Route::post('/todos', [TodoController::class, 'store']);
 // PUT update all data, PATCH update part data.
 Route::patch('/todos/{id}', [TodoController::class, 'update']);
 Route::delete('/todos/{id}', [TodoController::class, 'destroy']);
+Route::get('/todos', [TodoController::class, 'index']);
+Route::get('/todos/{id}', [TodoController::class, 'show']);
