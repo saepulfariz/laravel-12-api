@@ -20,4 +20,17 @@ class TodoController extends Controller
 
         return response()->json(['data' => $todo], 201);
     }
+
+    public function update(Request $request, $id)
+    {
+        $request->validate([
+            'name' => 'required'
+        ]);
+
+        $todo = Todo::findOrFail($id);
+        $todo->name = $request->name;
+        $todo->save();
+
+        return response()->json(['data' => $todo], 200);
+    }
 }

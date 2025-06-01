@@ -9,3 +9,8 @@ use Illuminate\Support\Facades\Route;
 // })->middleware('auth:sanctum');
 
 Route::post('/todos', [TodoController::class, 'store']);
+
+// PUT update all data, PATCH update part data.
+Route::patch('/todos/{id}', [TodoController::class, 'update']);
+
+
