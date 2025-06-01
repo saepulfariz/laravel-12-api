@@ -33,4 +33,12 @@ class TodoController extends Controller
 
         return response()->json(['data' => $todo], 200);
     }
+
+    public function destroy($id)
+    {
+        $todo = Todo::findOrFail($id);
+        $todo->delete();
+
+        return response()->json(['data' => $todo], 200);
+    }
 }
