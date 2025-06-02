@@ -11,12 +11,12 @@
                 "tags": [
                     "Todos"
                 ],
-                "summary": "Get all list data todos",
-                "description": "Return data todos from database",
+                "summary": "Retrieve a list of all todo items",
+                "description": "Returns all todo items available in the database",
                 "operationId": "dd687d49d7f86d473ce56a7806776fc4",
                 "responses": {
                     "200": {
-                        "description": "Operation success",
+                        "description": "Successful operation",
                         "content": {
                             "application/json": {
                                 "schema": {
@@ -29,7 +29,262 @@
                         }
                     },
                     "401": {
-                        "description": "Not Authentication"
+                        "description": "Unauthorized - Authentication required"
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Todos"
+                ],
+                "summary": "Create a new todo item",
+                "description": "Adds a new todo item to the database.",
+                "operationId": "6f5da079c2dace66df52625276205a32",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "name",
+                                    "status"
+                                ],
+                                "properties": {
+                                    "name": {
+                                        "type": "string",
+                                        "example": "Buy groceries"
+                                    },
+                                    "status": {
+                                        "type": "string",
+                                        "enum": [
+                                            "in progress",
+                                            "done",
+                                            "canceled"
+                                        ],
+                                        "example": "in progress"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Created - The new todo item was successfully created.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Todo"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized - Authentication required"
+                    },
+                    "422": {
+                        "description": "Unprocessable Entity - Validation failed for the provided data.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "The given data was invalid."
+                                        },
+                                        "errors": {
+                                            "properties": {
+                                                "name": {
+                                                    "type": "array",
+                                                    "items": {
+                                                        "type": "string",
+                                                        "example": "The name field is required."
+                                                    }
+                                                },
+                                                "status": {
+                                                    "type": "array",
+                                                    "items": {
+                                                        "type": "string",
+                                                        "example": "The selected status is invalid."
+                                                    }
+                                                }
+                                            },
+                                            "type": "object"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/todos/{id}": {
+            "get": {
+                "tags": [
+                    "Todos"
+                ],
+                "summary": "Retrieve a single todo item by ID",
+                "description": "Returns a specific todo item based on its unique identifier.",
+                "operationId": "5ee0e89cdc77f538ae94769b0b5cfae1",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID of the todo item to retrieve",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Todo"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Not Found - Todo item with the specified ID does not exist."
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "Todos"
+                ],
+                "summary": "Update an existing todo item",
+                "description": "Modifies the details of an existing todo item identified by its ID.",
+                "operationId": "0e5cec090fe772f5dcb769dd9e38717c",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID of the todo item to update",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "name",
+                                    "status"
+                                ],
+                                "properties": {
+                                    "name": {
+                                        "type": "string",
+                                        "example": "Updated todo name"
+                                    },
+                                    "status": {
+                                        "type": "string",
+                                        "enum": [
+                                            "in progress",
+                                            "done",
+                                            "canceled"
+                                        ],
+                                        "example": "done"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successful operation - The todo item was updated.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Todo"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Not Found - Todo item with the specified ID does not exist."
+                    },
+                    "422": {
+                        "description": "Unprocessable Entity - Validation failed for the provided data.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "The given data was invalid."
+                                        },
+                                        "errors": {
+                                            "properties": {
+                                                "name": {
+                                                    "type": "array",
+                                                    "items": {
+                                                        "type": "string",
+                                                        "example": "The name field is required."
+                                                    }
+                                                },
+                                                "status": {
+                                                    "type": "array",
+                                                    "items": {
+                                                        "type": "string",
+                                                        "example": "The selected status is invalid."
+                                                    }
+                                                }
+                                            },
+                                            "type": "object"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "Todos"
+                ],
+                "summary": "Delete a todo item",
+                "description": "Removes a specific todo item from the database based on its ID.",
+                "operationId": "2f51ac0f120b8a6c7a8092bbd18174f4",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID of the todo item to delete",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful operation - The todo item was deleted.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Todo"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Not Found - Todo item with the specified ID does not exist."
                     }
                 }
             }
@@ -39,27 +294,27 @@
         "schemas": {
             "Todo": {
                 "title": "Todo",
-                "description": "Todo Type Model",
+                "description": "Todo Model representing a task or item to be completed.",
                 "properties": {
                     "id": {
-                        "description": "Unique identifier for the Todo type",
+                        "description": "Unique identifier for the Todo item.",
                         "type": "integer"
                     },
                     "name": {
-                        "description": "Name of the actor type",
+                        "description": "Name or title of the todo item.",
                         "type": "string"
                     },
                     "status": {
-                        "description": "Status of the actor type",
+                        "description": "Current status of the todo item (e.g., 'in progress', 'done', 'canceled').",
                         "type": "string"
                     },
                     "created_at": {
-                        "description": "Time created at of the data",
+                        "description": "Timestamp when the todo item was created.",
                         "type": "string",
                         "format": "date-time"
                     },
                     "updated_at": {
-                        "description": "Time updated at of the data",
+                        "description": "Timestamp when the todo item was last updated.",
                         "type": "string",
                         "format": "date-time"
                     }
