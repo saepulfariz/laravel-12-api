@@ -1,67 +1,10 @@
 {
     "openapi": "3.0.0",
     "info": {
-        "title": "My First API",
+        "title": "LARAVEL 12 API",
         "version": "0.1"
     },
     "paths": {
-        "/api": {},
-        "/api/todos": {
-            "get": {
-                "tags": [
-                    "Todos"
-                ],
-                "summary": "Mendapatkan daftar semua todo",
-                "description": "Mengembalikan daftar todo dari database",
-                "operationId": "dd687d49d7f86d473ce56a7806776fc4",
-                "responses": {
-                    "200": {
-                        "description": "Operasi berhasil",
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "type": "array",
-                                    "items": {
-                                        "$ref": "#/components/schemas/Todo"
-                                    }
-                                }
-                            }
-                        }
-                    },
-                    "401": {
-                        "description": "Tidak terautentikasi"
-                    }
-                }
-            }
-        }
-    },
-    "components": {
-        "schemas": {
-            "Todo": {
-                "title": "Todo",
-                "description": "Todo Type Model",
-                "properties": {
-                    "id": {
-                        "description": "Unique identifier for the Todo type",
-                        "type": "integer"
-                    },
-                    "name": {
-                        "description": "Name of the actor type",
-                        "type": "string"
-                    },
-                    "status": {
-                        "description": "Status of the actor type",
-                        "type": "string"
-                    }
-                },
-                "type": "object"
-            }
-        }
-    },
-    "tags": [
-        {
-            "name": "Todos",
-            "description": "Todos"
-        }
-    ]
+        "/api": {}
+    }
 }
