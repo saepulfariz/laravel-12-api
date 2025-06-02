@@ -6,6 +6,41 @@ use App\Models\Todo;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
+/**
+ * @OA\Schema(
+ *     schema="Todo",
+ *     type="object",
+ *     title="Todo",
+ *     description="Todo Type Model",
+ *     @OA\Property(
+ *         property="id",
+ *         type="integer",
+ *         description="Unique identifier for the Todo type"
+ *     ),
+ *     @OA\Property(
+ *         property="name",
+ *         type="string",
+ *         description="Name of the actor type"
+ *     ),
+ *     @OA\Property(
+ *         property="status",
+ *         type="string",
+ *         description="Status of the actor type"
+ *     ),
+ *     @OA\Property(
+ *         property="created_at",
+ *         type="datetime",
+ *         description="Time created at of the data"
+ *     ),
+ *     @OA\Property(
+ *         property="updated_at",
+ *         type="datetime",
+ *         description="Time updated at of the data"
+ *     )
+ * )
+ */
+
+
 class TodoController extends Controller
 {
     public function index()

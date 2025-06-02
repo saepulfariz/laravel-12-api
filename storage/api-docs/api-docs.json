@@ -6,5 +6,38 @@
     },
     "paths": {
         "/api": {}
+    },
+    "components": {
+        "schemas": {
+            "Todo": {
+                "title": "Todo",
+                "description": "Todo Type Model",
+                "properties": {
+                    "id": {
+                        "description": "Unique identifier for the Todo type",
+                        "type": "integer"
+                    },
+                    "name": {
+                        "description": "Name of the actor type",
+                        "type": "string"
+                    },
+                    "status": {
+                        "description": "Status of the actor type",
+                        "type": "string"
+                    },
+                    "created_at": {
+                        "description": "Time created at of the data",
+                        "type": "string",
+                        "format": "date-time"
+                    },
+                    "updated_at": {
+                        "description": "Time updated at of the data",
+                        "type": "string",
+                        "format": "date-time"
+                    }
+                },
+                "type": "object"
+            }
+        }
     }
 }
