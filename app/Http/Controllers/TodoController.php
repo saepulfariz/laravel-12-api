@@ -81,7 +81,7 @@ class TodoController extends Controller
     {
         $request->validate([
             'name' => 'required',
-            // 'status' => 'required|in:in progress, done, canceled',
+            'status' => 'required|in:in progress, done, canceled',
         ]);
 
         $todo = Todo::create($request->all());
@@ -93,11 +93,13 @@ class TodoController extends Controller
     public function update(Request $request, $id)
     {
         $request->validate([
-            'name' => 'required'
+            'name' => 'required',
+            'status' => 'required|in:in progress, done, canceled',
         ]);
 
         $todo = Todo::findOrFail($id);
         $todo->name = $request->name;
+        $todo->status = $request->status;
         $todo->save();
 
         return response()->json(['data' => $todo], 200);
