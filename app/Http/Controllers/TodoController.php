@@ -43,6 +43,26 @@ use App\Http\Controllers\Controller;
 
 class TodoController extends Controller
 {
+    /**
+     * @OA\Get(
+     * path="/api/todos",
+     * tags={"Todos"},
+     * summary="Get all list data todos",
+     * description="Return data todos from database",
+     * @OA\Response(
+     * response=200,
+     * description="Operation success",
+     * @OA\JsonContent(
+     * type="array",
+     * @OA\Items(ref="#/components/schemas/Todo")
+     * )
+     * ),
+     * @OA\Response(
+     * response=401,
+     * description="Not Authentication"
+     * )
+     * )
+     */
     public function index()
     {
         $todos = Todo::all();

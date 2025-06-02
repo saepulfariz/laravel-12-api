@@ -5,7 +5,35 @@
         "version": "0.1"
     },
     "paths": {
-        "/api": {}
+        "/api": {},
+        "/api/todos": {
+            "get": {
+                "tags": [
+                    "Todos"
+                ],
+                "summary": "Get all list data todos",
+                "description": "Return data todos from database",
+                "operationId": "dd687d49d7f86d473ce56a7806776fc4",
+                "responses": {
+                    "200": {
+                        "description": "Operation success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/Todo"
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Not Authentication"
+                    }
+                }
+            }
+        }
     },
     "components": {
         "schemas": {
@@ -39,5 +67,11 @@
                 "type": "object"
             }
         }
-    }
+    },
+    "tags": [
+        {
+            "name": "Todos",
+            "description": "Todos"
+        }
+    ]
 }
