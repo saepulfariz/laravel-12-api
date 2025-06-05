@@ -17,4 +17,10 @@
 -   composer require "darkaonline/l5-swagger"
 -   php artisan vendor:publish --provider "L5Swagger\L5SwaggerServiceProvider"
 -   php artisan l5-swagger:generate
--   http://localhost:8000/api/documentation
+-   http://localhost:8000/api/
+
+## Resource API
+
+-   php artisan make:resource TodoResource
+-   php artisan make:resource Todo --collection
+-   php artisan make:resource TodoCollection

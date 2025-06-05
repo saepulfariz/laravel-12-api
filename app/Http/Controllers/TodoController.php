@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Todo;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Http\Resources\TodoResource;
 
 /**
  * @OA\Schema(
@@ -69,7 +70,13 @@ class TodoController extends Controller
     {
         $todos = Todo::all();
 
-        return response()->json(['data' => $todos]);
+        // return response()->json(['data' => $todos]);
+        // return TodoResource::collection($todos);
+        // return Todo::all()->toResourceCollection();
+        return response()->json([
+            'message' => 'List data todos',
+            'data' => TodoResource::collection($todos)
+        ]);
     }
 
     /**
@@ -102,7 +109,9 @@ class TodoController extends Controller
     {
         $todo = Todo::findOrFail($id);
 
-        return response()->json(['data' => $todo]);
+        // return response()->json(['data' => $todo]);
+        return new TodoResource($todo);
+        // return Todo::findOrFail($id)->toResource();
     }
 
     /**
@@ -152,7 +161,7 @@ class TodoController extends Controller
         $todo = Todo::create($request->all());
         $todo->refresh();
 
-        return response()->json(['data' => $todo], 201);
+        return response()->json(['data' => new TodoResource($todo)], 201);
     }
 
     /**
@@ -213,7 +222,7 @@ class TodoController extends Controller
         $todo->status = $request->status;
         $todo->save();
 
-        return response()->json(['data' => $todo], 200);
+        return response()->json(['data' => new TodoResource($todo)], 200);
     }
 
     /**
@@ -247,6 +256,6 @@ class TodoController extends Controller
         $todo = Todo::findOrFail($id);
         $todo->delete();
 
-        return response()->json(['data' => $todo], 200);
+        return response()->json(['data' => new TodoResource($todo)], 200);
     }
 }
