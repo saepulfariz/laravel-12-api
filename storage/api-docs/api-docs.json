@@ -4,6 +4,16 @@
         "title": "LARAVEL 12 API",
         "version": "0.1"
     },
+    "servers": [
+        {
+            "url": "http://localhost:8000",
+            "description": "Server Online"
+        },
+        {
+            "url": "http://localhost:8000",
+            "description": "Server Local"
+        }
+    ],
     "paths": {
         "/api": {},
         "/api/todos": {
@@ -156,13 +166,47 @@
                     }
                 }
             },
-            "put": {
+            "delete": {
+                "tags": [
+                    "Todos"
+                ],
+                "summary": "Delete a todo item",
+                "description": "Removes a specific todo item from the database based on its ID.",
+                "operationId": "2f51ac0f120b8a6c7a8092bbd18174f4",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID of the todo item to delete",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful operation - The todo item was deleted.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Todo"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Not Found - Todo item with the specified ID does not exist."
+                    }
+                }
+            },
+            "patch": {
                 "tags": [
                     "Todos"
                 ],
                 "summary": "Update an existing todo item",
                 "description": "Modifies the details of an existing todo item identified by its ID.",
-                "operationId": "0e5cec090fe772f5dcb769dd9e38717c",
+                "operationId": "c7071a950873beb930626763b5a0ed7f",
                 "parameters": [
                     {
                         "name": "id",
@@ -251,40 +295,6 @@
                                 }
                             }
                         }
-                    }
-                }
-            },
-            "delete": {
-                "tags": [
-                    "Todos"
-                ],
-                "summary": "Delete a todo item",
-                "description": "Removes a specific todo item from the database based on its ID.",
-                "operationId": "2f51ac0f120b8a6c7a8092bbd18174f4",
-                "parameters": [
-                    {
-                        "name": "id",
-                        "in": "path",
-                        "description": "ID of the todo item to delete",
-                        "required": true,
-                        "schema": {
-                            "type": "integer"
-                        }
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "Successful operation - The todo item was deleted.",
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "$ref": "#/components/schemas/Todo"
-                                }
-                            }
-                        }
-                    },
-                    "404": {
-                        "description": "Not Found - Todo item with the specified ID does not exist."
                     }
                 }
             }

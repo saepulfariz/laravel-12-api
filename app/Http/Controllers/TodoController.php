@@ -146,7 +146,7 @@ class TodoController extends Controller
     {
         $request->validate([
             'name' => 'required',
-            'status' => 'required|in:in progress, done, canceled',
+            'status' => 'required|in:in progress,done,canceled',
         ]);
 
         $todo = Todo::create($request->all());
@@ -156,7 +156,7 @@ class TodoController extends Controller
     }
 
     /**
-     * @OA\Put(
+     * @OA\Patch(
      * path="/api/todos/{id}",
      * tags={"Todos"},
      * summary="Update an existing todo item",
@@ -205,7 +205,7 @@ class TodoController extends Controller
     {
         $request->validate([
             'name' => 'required',
-            'status' => 'required|in:in progress, done, canceled',
+            'status' => 'required|in:in progress,done,canceled',
         ]);
 
         $todo = Todo::findOrFail($id);
