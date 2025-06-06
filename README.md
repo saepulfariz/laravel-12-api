@@ -11,6 +11,9 @@
 -   php artisan make:model Todo --resource -m (Controller and migration)
 -   php artisan migrate
 -   php artisan make:controller TodoController / php artisan make:controller Api\TodoController / php artisan make:controller TodoController --resource
+-   php artisan make:migration create_categories_table
+-   php artisan make:migration add_category_id_to_todos_table
+-   php artisan make:model Category
 
 ## Swagger API
 

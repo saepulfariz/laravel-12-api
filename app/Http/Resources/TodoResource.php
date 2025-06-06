@@ -20,6 +20,9 @@ class TodoResource extends JsonResource
             'name' => $this->name,
             'created_at' => $this->created_at->format('Y-m-d H:i:s'),
             'updated_at' => $this->updated_at->format('Y-m-d H:i:s'),
+            'category_id' => $this->category_id,
+            'name_category' => ($this->category) ? $this->category->name : null,
+            'category' => $this->category,
         ];
     }
 }
