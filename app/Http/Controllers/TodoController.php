@@ -7,41 +7,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\TodoResource;
 
-/**
- * @OA\Schema(
- * schema="Todo",
- * type="object",
- * title="Todo",
- * description="Todo Model representing a task or item to be completed.",
- * @OA\Property(
- * property="id",
- * type="integer",
- * description="Unique identifier for the Todo item."
- * ),
- * @OA\Property(
- * property="name",
- * type="string",
- * description="Name or title of the todo item."
- * ),
- * @OA\Property(
- * property="status",
- * type="string",
- * description="Current status of the todo item (e.g., 'in progress', 'done', 'canceled')."
- * ),
- * @OA\Property(
- * property="created_at",
- * type="string",
- * format="date-time",
- * description="Timestamp when the todo item was created."
- * ),
- * @OA\Property(
- * property="updated_at",
- * type="string",
- * format="date-time",
- * description="Timestamp when the todo item was last updated."
- * )
- * )
- */
+
 
 
 class TodoController extends Controller

@@ -302,21 +302,57 @@
     },
     "components": {
         "schemas": {
+            "Category": {
+                "title": "Category",
+                "description": "Category Model representing a category task or item.",
+                "required": [
+                    "id",
+                    "name"
+                ],
+                "properties": {
+                    "id": {
+                        "type": "integer",
+                        "example": 1
+                    },
+                    "name": {
+                        "type": "string",
+                        "example": "Learning"
+                    },
+                    "created_at": {
+                        "type": "string",
+                        "format": "date-time",
+                        "nullable": true
+                    },
+                    "updated_at": {
+                        "type": "string",
+                        "format": "date-time",
+                        "nullable": true
+                    }
+                },
+                "type": "object"
+            },
             "Todo": {
                 "title": "Todo",
                 "description": "Todo Model representing a task or item to be completed.",
+                "required": [
+                    "name",
+                    "status",
+                    "category_id"
+                ],
                 "properties": {
                     "id": {
                         "description": "Unique identifier for the Todo item.",
-                        "type": "integer"
+                        "type": "integer",
+                        "example": 1
                     },
                     "name": {
                         "description": "Name or title of the todo item.",
                         "type": "string"
                     },
                     "status": {
-                        "description": "Current status of the todo item (e.g., 'in progress', 'done', 'canceled').",
-                        "type": "string"
+                        "description": "Current status of the todo item",
+                        "type": "string",
+                        "example": "in progress, done, canceled"
                     },
                     "created_at": {
                         "description": "Timestamp when the todo item was created.",
@@ -327,6 +363,13 @@
                         "description": "Timestamp when the todo item was last updated.",
                         "type": "string",
                         "format": "date-time"
+                    },
+                    "name_category": {
+                        "type": "string",
+                        "example": "Learning"
+                    },
+                    "category": {
+                        "$ref": "#/components/schemas/Category"
                     }
                 },
                 "type": "object"
