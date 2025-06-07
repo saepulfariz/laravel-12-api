@@ -27,3 +27,8 @@
 -   php artisan make:resource TodoResource
 -   php artisan make:resource Todo --collection
 -   php artisan make:resource TodoCollection
+
+## Authentation
+
+-   php artisan make:seeder UserSeeder
+-   php artisan db:seed --class=UserSeeder
