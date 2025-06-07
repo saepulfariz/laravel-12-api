@@ -30,6 +30,7 @@
 
 ## Authentation
 
+-   php artisan install:api
 -   php artisan make:seeder UserSeeder
 -   php artisan db:seed --class=UserSeeder
 -   php artisan make:controller AuthController
