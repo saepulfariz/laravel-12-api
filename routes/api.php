@@ -15,7 +15,7 @@ Route::post('/todos', [TodoController::class, 'store']);
 Route::patch('/todos/{id}', [TodoController::class, 'update']);
 Route::delete('/todos/{id}', [TodoController::class, 'destroy']);
 Route::get('/todos', [TodoController::class, 'index']);
-Route::get('/todos/{id}', [TodoController::class, 'show']);
+Route::get('/todos/{id}', [TodoController::class, 'show'])->middleware('auth:sanctum');
 
 
 Route::prefix('auth')->group(function () {
