@@ -48,6 +48,14 @@ class AuthController extends Controller
      * )
      * ),
      * @OA\Response(
+     * response=401 ,
+     * description="Error: Unauthorized",
+     * @OA\JsonContent(
+     * @OA\Property(property="status", type="string", example="error"),
+     * @OA\Property(property="message", type="string", example="Invalid Credentials"),
+     * )
+     * ),
+     * @OA\Response(
      * response=422,
      * description="Unprocessable Entity - Validation failed for the provided data.",
      * @OA\JsonContent(
