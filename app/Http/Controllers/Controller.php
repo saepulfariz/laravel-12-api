@@ -15,6 +15,13 @@ use OpenApi\Annotations as OA;
  *     url="http://localhost:8000",
  *     description="Server Local"
  * )
+ * @OA\SecurityScheme(
+ *     securityScheme="bearerAuth",
+ *     type="http",
+ *     scheme="bearer",
+ *     bearerFormat="JWT",
+ *     description="Use your Bearer Token to authenticate"
+ * )
  */
 abstract class Controller
 {

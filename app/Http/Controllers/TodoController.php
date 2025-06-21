@@ -49,7 +49,7 @@ class TodoController extends Controller
      * @OA\Get(
      * path="/api/todos/{id}",
      * tags={"Todos"},
-     * summary="Retrieve a single todo item by ID",
+     * summary="Retrieve a single todo item by ID (Requires Bearer Token)",
      * description="Returns a specific todo item based on its unique identifier.",
      * @OA\Parameter(
      * name="id",
@@ -66,9 +66,14 @@ class TodoController extends Controller
      * @OA\JsonContent(ref="#/components/schemas/Todo")
      * ),
      * @OA\Response(
+     *  response=401,
+     *  description="Unauthorized - Authentication required. Please provide a valid Bearer Token."
+     *  ),
+     * @OA\Response(
      * response=404,
      * description="Not Found - Todo item with the specified ID does not exist."
-     * )
+     * ),
+     * security={{"bearerAuth": {}}}  
      * )
      */
     public function show($id)

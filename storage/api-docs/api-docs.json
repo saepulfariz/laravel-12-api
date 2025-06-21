@@ -302,7 +302,7 @@
                 "tags": [
                     "Todos"
                 ],
-                "summary": "Retrieve a single todo item by ID",
+                "summary": "Retrieve a single todo item by ID (Requires Bearer Token)",
                 "description": "Returns a specific todo item based on its unique identifier.",
                 "operationId": "5ee0e89cdc77f538ae94769b0b5cfae1",
                 "parameters": [
@@ -327,10 +327,18 @@
                             }
                         }
                     },
+                    "401": {
+                        "description": "Unauthorized - Authentication required. Please provide a valid Bearer Token."
+                    },
                     "404": {
                         "description": "Not Found - Todo item with the specified ID does not exist."
                     }
-                }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
             },
             "delete": {
                 "tags": [
@@ -539,6 +547,14 @@
                     }
                 },
                 "type": "object"
+            }
+        },
+        "securitySchemes": {
+            "bearerAuth": {
+                "type": "http",
+                "description": "Use your Bearer Token to authenticate",
+                "bearerFormat": "JWT",
+                "scheme": "bearer"
             }
         }
     },
