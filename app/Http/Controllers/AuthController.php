@@ -90,6 +90,9 @@ class AuthController extends Controller
             ], 401);
         }
 
+        // delete all token
+        $user->tokens()->delete();
+
         $token = $user->createToken($request->device_name)->plainTextToken;
         return response()->json([
             'status' => 'success',
@@ -99,5 +102,41 @@ class AuthController extends Controller
                 'token' => $token
             ]
         ], 200);
+    }
+
+    /**
+     * @OA\Post(
+     * tags={"Authentition"},
+     * path="/api/auth/logout",
+     * summary="Logout your account",
+     * description="Input Bearer token in header Authorization (Requires Bearer Token).",
+     * @OA\Response(
+     * response=200,
+     * description="User Logged in successfully",
+     * @OA\JsonContent(
+     * @OA\Property(property="message", type="string", example="Logout success"),
+     * ),
+     *),
+     * @OA\Response(
+     *  response=401,
+     *  description="Unauthorized - Authentication required. Please provide a valid Bearer Token.",
+     *  @OA\JsonContent(
+     *  @OA\Property(property="message", type="string", example="Unauthenticated."),
+     *  ),
+     *  ),
+     * security={{"bearerAuth": {}}}  
+     * )
+     */
+    public function logout(Request $request)
+    {
+        // return $request->user();
+        // return auth()->user();
+
+        // $request->user()->currentAccessToken()->delete();
+
+        // delete all token
+        $request->user()->tokens()->delete();
+
+        return response()->json(['message' => 'Logout sucess'], 200);
     }
 }

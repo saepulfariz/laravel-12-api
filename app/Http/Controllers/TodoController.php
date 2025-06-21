@@ -67,7 +67,10 @@ class TodoController extends Controller
      * ),
      * @OA\Response(
      *  response=401,
-     *  description="Unauthorized - Authentication required. Please provide a valid Bearer Token."
+     *  description="Unauthorized - Authentication required. Please provide a valid Bearer Token.",
+     *  @OA\JsonContent(
+     *  @OA\Property(property="message", type="string", example="Unauthenticated."),
+     *  ),
      *  ),
      * @OA\Response(
      * response=404,
