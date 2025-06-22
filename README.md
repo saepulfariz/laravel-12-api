@@ -14,6 +14,8 @@
 -   php artisan make:migration create_categories_table
 -   php artisan make:migration add_category_id_to_todos_table
 -   php artisan make:model Category
+-   php artisan migrate --seed
+-   php artisan db:seed
 
 ## Swagger API
 
