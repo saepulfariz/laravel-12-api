@@ -40,3 +40,4 @@
 -   php artisan make:migration create_roles_table
 -   php artisan make:model Role
 -   php artisan db:seed --class=RoleSeeder
+-   php artisan make:migration add_column_role_id_to_users_table
