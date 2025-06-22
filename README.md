@@ -34,3 +34,9 @@
 -   php artisan make:seeder UserSeeder
 -   php artisan db:seed --class=UserSeeder
 -   php artisan make:controller AuthController
+
+## Authorization
+
+-   php artisan make:migration create_roles_table
+-   php artisan make:model Role
+-   php artisan db:seed --class=RoleSeeder
